@@ -4,6 +4,15 @@ from pyfiglet import Figlet
 
 # Agrega tus importaciones necesarias (por ejemplo, para SQLAlchemy y requests)
 
+# Definir una lista de productos como ejemplo
+productos = [
+    {"nombre": "Producto1", "precio": 10.0, "stock": 50},
+    {"nombre": "Producto2", "precio": 20.0, "stock": 30},
+    {"nombre": "Producto3", "precio": 15.0, "stock": 40},
+]
+
+clientes = []
+
 def mostrar_menu():
     print("----- Menú -----")
     print("1. Opción 1")
@@ -13,6 +22,9 @@ def mostrar_menu():
     print("2.3. Actualizar tipo de cambio desde API")
     print("2.4. Editar Precio")
     print("2.5. Editar Stock")
+    print("2.6. Buscar Producto por Nombre")
+    print("2.7. Agregar Cliente")
+    print("2.8. Listar Clientes")
     print("3. Opción 3")
     print("4. Salir")
 
@@ -38,6 +50,27 @@ def editar_precio():
 def editar_stock():
     # Lógica para editar el stock de un producto
     print("Editando Stock")
+
+def buscar_producto_por_nombre():
+    nombre_buscar = input("Ingrese el nombre del producto a buscar: ")
+    resultado = [producto for producto in productos if producto["nombre"].lower() == nombre_buscar.lower()]
+
+    if resultado:
+        print("Producto(s) encontrado(s):")
+        for producto in resultado:
+            print(producto)
+    else:
+        print("Producto no encontrado.")
+
+def agregar_cliente():
+    nombre_cliente = input("Ingrese el nombre del cliente: ")
+    clientes.append({"nombre": nombre_cliente})
+    print("Cliente agregado exitosamente.")
+
+def listar_clientes():
+    print("Clientes:")
+    for cliente in clientes:
+        print(cliente["nombre"])
 
 if __name__ == "__main__":
     while True:
@@ -66,6 +99,15 @@ if __name__ == "__main__":
 
         elif opcion == "2.5":
             editar_stock()
+
+        elif opcion == "2.6":
+            buscar_producto_por_nombre()
+
+        elif opcion == "2.7":
+            agregar_cliente()
+
+        elif opcion == "2.8":
+            listar_clientes()
 
         elif opcion == "3":
             print("Realizando la Opción 3")
